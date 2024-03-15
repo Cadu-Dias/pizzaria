@@ -8,5 +8,6 @@ export const ADMIN_ROUTES : Routes = [
     {
         path: 'main/page',
         loadComponent: () => import("./main-page-admin/main-page-admin.component").then(c => c.MainPageAdminComponent)
+        
     }
 ]
