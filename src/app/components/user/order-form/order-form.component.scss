@@ -1,0 +1,80 @@
+$light-black: rgb(48,51,48);
+$light-grey: rgb(243,245, 242);
+$red : rgb(231, 76, 60);
+.order__form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    margin: 30px 0 0 0;
+    gap: 20px;
+    & > div {
+        margin-right: 15px;
+        width: 47%;
+
+        h3 {
+            font-size: 20px;
+            color: rgb(102,104, 131);
+            font-weight: 600;
+        }
+        input, select {
+            width: 100%;
+            border: none;
+            background-color: $light-grey;
+            padding: 15px 10px;
+            border-radius: 5px;
+            font-size: 20px;
+            &::placeholder {
+                font-size: 18px;
+                font-weight: normal;
+                color: rgb(102,104, 131);
+            }
+        }
+
+        select option {
+            font-size: 20px;
+        }
+
+        
+    }
+
+    &__account__message {
+        font-size: 23px;
+    }
+
+    &__send {
+        width: 99%;
+        padding: 10px 20px;
+        font-size: 25px;
+        color: white;
+        background-color: $red;
+        border-radius: 5px;
+        border: none;
+        transition: 1s;
+        &:hover {
+            cursor: pointer;
+            background-color: $light-black;
+        }
+
+        &:disabled,
+        &[disabled]{
+        border: 1px solid #999999;
+        background-color: #cccccc;
+        color: #666666;
+
+            &:hover {
+                cursor: auto;
+            }
+        }
+    }
+
+    @media only screen and (max-width:947px) {
+        & > div, &__send {
+            width: 85%;
+        }
+
+    }
+    
+}

@@ -1,0 +1,43 @@
+<form action="" class="order__form" [formGroup]="orderForm" *ngIf="orderForm">
+    <div class="order__form__name">
+        <h3 class="order__form__name__title">Name:</h3>
+        <input type="text" class="order__form__name__input" formControlName="name"
+        placeholder="Enter your name"
+        >
+    </div>
+    <div class="order__form__phone">
+        <h3 class="order__form__phone__title">Phone:</h3>
+        <input type="text" class="order__form__phone__input" formControlName="number"
+        placeholder="Enter your number: (DD)XXXXX-XXXX"
+        >
+    </div>
+    <div class="order__form__payment">
+        <h3 class="order__form__payment__title">Payment Method:</h3>
+        <select value="Cash On Delivery" class="order__form__payment__select" formControlName="paymentMethod">
+            <option selected value="Cash on Delivery" class="order__form__payment__select__option">Cash on Delivery</option>
+            <option value="Credit Card" class="order__form__payment__select__option">Credit Card</option>
+            <option value="Paypal" class="order__form__payment__select__option">Paypal</option>
+            <option value="Pix" class="order__form__payment__select__option">Pix</option>
+        </select>
+    </div>
+    <div class="order__form__adress1">
+        <h3 class="order__form__adress1__title">Adress Line 01:</h3>
+        <input type="" class="order__form__adress1__input" formControlName="adressLine01"
+        placeholder="Enter the name of the state and city that you live"
+        >
+    </div>
+    <div class="order__form__adress2">
+        <h3 class="order__form__adress2__title">Adress Line 02:</h3>
+        <input type="text" class="order__form__adress2__input" formControlName="adressLine02"
+        placeholder="Enter the name of your street "
+        >
+    </div>
+    <div class="order__form__pin">
+        <h3 class="order__form__pin__title">Pin:</h3>
+        <input type="number" class="order__form__pin__input" formControlName="pinCode"
+        placeholder="Enter your pin"
+        >
+    </div>
+    <h1 *ngIf="!isLogged" class="order__form__account__message">You must a have a account to make a order!</h1>
+    <button class="order__form__send" [disabled]="!isLogged" (click)="sendOrder()">Order Now</button>
+</form>
