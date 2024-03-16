@@ -1,0 +1,23 @@
+<section class="products">
+    <article class="products__add">
+        <h1 class="products__add__title">{{"ADD PRODUCTS" | titlecase}}</h1>
+        <div class="products__add__form">   
+            <app-product-form (formAction)="insertProduct($event)" buttonText="Add Product"></app-product-form>
+        </div>
+    </article>
+    <article class="products__added">
+        <h1 class="products__added__title">PRODUCTS ADDED</h1>
+        <div class="products__added__container">
+            @for (product of productsArray(); track $index) {
+                <app-product-container 
+                    [product]="product"
+                    accountType="admin"
+                    (updateProductEvent)="updateProduct($event)"
+                    (deleteProductEvent)="deleteProduct($event)"
+                >
+                </app-product-container>
+            }
+        </div>
+    </article>
+</section>
+

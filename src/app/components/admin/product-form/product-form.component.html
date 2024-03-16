@@ -1,0 +1,71 @@
+<form action="" class="products__add__form" [formGroup]="this.productForm" >
+    <div class="products__add__form__product__name">
+        <h3 class="products__add__form__product__name__title">Name</h3>
+        <input 
+            type="text" 
+            class="products__add__form__product__name__input"
+            placeholder="Insert the name for the new pizza"
+            formControlName="name"
+        >
+    </div>
+    <div class="products__add__form__product__price">
+        <h3 class="products__add__form__product__price__title">Price</h3>
+        <input 
+            type="text" 
+            class="products__add__form__product__price"
+            placeholder=" Enter a price for the new pizza"
+            formControlName="price"
+        >
+    </div>
+    <div class="products__add__form__product__ingredients">
+        <h3 class="products__add__form__product__ingredients__title">Ingredients</h3>
+        <div class="products__add__form__product__ingredients__container">
+            @for (ingredient of pizzaIngredients; track $index) {
+
+                <h5 
+                    class="products__add__form__product__ingredients__container__item"
+                    (click)="insertSelectedIngredient(ingredient)"  
+                >
+                    {{ingredient}}
+                </h5>
+            }
+            
+        </div>
+        @if(selectedIngredients().length > 0) {
+            <div class="products__add__form__product__ingredients__selected">
+                <h4 class="products__add__form__product__ingredients__selected__text">Selected: </h4>
+                @for (ingredient of selectedIngredients(); track $index) {
+    
+                    <div class="products__add__form__product__ingredients__selected__item">
+                        <h5 class="products__add__form__product__ingredients__selected__item__name">{{ingredient}}</h5>
+                        <h5 class="products__add__form__product__ingredients__selected__item__remove__icon" (click)="removeSelectedIngredient(ingredient)">X</h5>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+    <div class="products__add__form__product__picture">
+        <h3 class="prodcuts__add__form__product__picture__title">Pizza Image (PNG, JPEG, JPG)</h3>
+        <input 
+            type="file" 
+            class="products__add__form__product__picture"  
+            (change)="onFileChange($event)"
+            accept="image/png, image/jpeg, image/jpg"
+        >
+        <input 
+            type="hidden" 
+            formControlName="image" 
+            name="fileHidden"
+        >
+    </div>
+    <div class="products__add__form__button">
+        <button class="products__add__form__button__action" (click)="formActionFunc()">
+            {{buttonText}}
+        </button>
+        @if(showCancelButton) {
+            <button class="products__add__form__button__cancel" (click)="cancelButtonFunc()">
+                Cancel
+            </button>
+        }
+    </div>
+</form>
