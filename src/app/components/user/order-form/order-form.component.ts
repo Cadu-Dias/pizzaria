@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Input, InputSignal, Output, input, signal } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, InputSignal, Output, effect, input, signal } from '@angular/core';
 import { v4 as uuid } from 'uuid';
 import { Order, Product } from '../../../core/models/interfaces/interfaces';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -21,12 +21,22 @@ export class OrderFormComponent {
   order!: Order;
   products!: string[];
   totalPrice: number= 0;
+  userId: string = ''
+  userName!: string;
 
   constructor(
     private formBuilder: FormBuilder,
     @Inject(DOCUMENT) private document : Document
   ) {
-
+    const sessionStorage = document.defaultView?.sessionStorage;
+    if (sessionStorage) {
+      const username = sessionStorage.getItem('userName');
+      const userid = sessionStorage.getItem('userId');
+      if (username && userid) {
+        this.userName = username;
+        this.userId = userid!
+      }
+    }
   }
 
   ngOnInit(): void {
@@ -57,7 +67,7 @@ export class OrderFormComponent {
           Validators.maxLength(4)
         ])]
       })  
-      if(sessionStorage.getItem("userName") !== null) {
+      if(this.userName) {
         this.isLogged = true
         this.orderForm.patchValue({
           name: sessionStorage.getItem("userName")
@@ -77,8 +87,8 @@ export class OrderFormComponent {
         products: [],
         status: "Pending",
         totalPrice: "0",
-        userId: sessionStorage.getItem("userId") as string,
-        userName: sessionStorage.getItem("userName")!
+        userId: this.userId,
+        userName: this.userName!
       },
 
       this.completeFormEvent.emit(this.order);

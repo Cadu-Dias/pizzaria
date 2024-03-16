@@ -75,9 +75,9 @@ export class AccountFormComponent {
       else if(this.accountType ==="admin" && this.formType ==="update") {
           if(
             this.formAccount.value["newPassword"] === this.formAccount.value["confirmPassword"] 
-            && this.formAccount.value["password"] === sessionStorage.getItem("password")
+            && this.formAccount.value["password"] === 'sessionStorage.getItem("password")'
             ) {
-            this.adminObject.id = sessionStorage.getItem("id") as string;
+            this.adminObject.id = 'sessionStorage.getItem("id") as string';
             this.adminObject.password = this.formAccount.value["newPassword"];
             this.adminObject.username = this.formAccount.value["username"];
             this.adminFormEvent.emit(this.adminObject);

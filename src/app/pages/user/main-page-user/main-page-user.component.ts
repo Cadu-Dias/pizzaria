@@ -1,4 +1,4 @@
-import { Component, ElementRef, Signal, ViewChild, WritableSignal, signal } from '@angular/core';
+import { Component, ElementRef, Inject, Signal, ViewChild, WritableSignal, effect, signal } from '@angular/core';
 import { BannerSectionComponent } from '../../../components/user/banner-section/banner-section.component';
 import { AboutSectionComponent } from '../../../components/user/about-section/about-section.component';
 import { MenuSectionComponent } from '../../../components/user/menu-section/menu-section.component';
@@ -9,7 +9,7 @@ import { Order, Product, User } from '../../../core/models/interfaces/interfaces
 import { ProductsService } from '../../../core/services/products/products.service';
 import { OrdersService } from '../../../core/services/orders/orders.service';
 import { UserService } from '../../../core/services/accounts/user/user.service';
-import { ViewportScroller } from '@angular/common';
+import { DOCUMENT, ViewportScroller } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { UserCartComponent } from '../../../components/user/user-cart/user-cart.component';
 import { UserOrdersComponent } from '../../../components/user/user-orders/user-orders.component';
@@ -58,7 +58,10 @@ export class MainPageUserComponent {
     private orderService: OrdersService,
     private userService: UserService,
     private scroller: ViewportScroller,
+    @Inject(DOCUMENT) private document: Document
   ) {}
+
+  
 
   ngOnInit() : void {
     this.subscriptionProducts = this.productsService.getProducts().subscribe(
@@ -170,16 +173,16 @@ export class MainPageUserComponent {
   loginUser(user:User) {
     let findUser = this.userArray.find((value) => user.email === value.email && user.password === value.password)
     if(findUser) {
-      sessionStorage.setItem("userId", findUser.id);
-      sessionStorage.setItem("userName", findUser.username);
+      this.document.defaultView?.sessionStorage.setItem("userId", findUser.id);
+      this.document.defaultView?.sessionStorage.setItem("userName", findUser.username);
       window.location.replace("/user")
     }
   }
 
   registerUser(user: User) {
     this.subscriptionUser = this.userService.postUsers(user).subscribe();
-    sessionStorage.setItem("userId", user.id);
-    sessionStorage.setItem("userName", user.username);
+    this.document.defaultView?.sessionStorage.setItem("userId", user.id);
+    this.document.defaultView?.sessionStorage.setItem("userName", user.username);
     window.location.replace("/user")
   }
 

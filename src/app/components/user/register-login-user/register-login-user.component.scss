@@ -15,7 +15,7 @@ $red : rgb(244, 90, 54);
     background-color: $light-grey;
     padding: 40px 0px;
     gap: 20px;
-    
+    z-index: 2;
     &__close {
         width: 80%;
         text-align: end;

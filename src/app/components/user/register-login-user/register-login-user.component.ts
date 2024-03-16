@@ -1,7 +1,8 @@
-import { Component, EventEmitter, OnInit, Output, WritableSignal, signal } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output, WritableSignal, signal } from '@angular/core';
 import { AccountFormComponent } from '../../../shared/components/account-form/account-form.component';
 import { User } from '../../../core/models/interfaces/interfaces';
 import { Router } from 'express';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-register-login-user',
@@ -17,14 +18,22 @@ export class RegisterLoginUserComponent implements OnInit{
   @Output() loginUserEvent: EventEmitter<User> = new EventEmitter();
 
   isLogged: WritableSignal<boolean> = signal(false);
-  username: string = sessionStorage.getItem("userName") as string;
+  username: WritableSignal<string | null> = signal(null);
 
   constructor(
-    private router: Router
-  ){}
+    @Inject(DOCUMENT) private document : Document
+  ) {
+    const sessionStorage = document.defaultView?.sessionStorage;
+    if (sessionStorage) {
+      const username = sessionStorage.getItem('userName');
+      if (username) {
+        this.username.set(username)
+      }
+    }
+  }
 
   ngOnInit(): void {
-    if(sessionStorage.getItem("userName") !== null) {
+    if(this.username()) {
       this.isLogged.set(true)
     }
   }
@@ -41,9 +50,10 @@ export class RegisterLoginUserComponent implements OnInit{
     this.registerUserEvent.emit(user)
   }
 
-  logout() {
-    sessionStorage.removeItem("userId")
-    sessionStorage.removeItem("userName")   
+  logout() { 
+    this.document.defaultView?.sessionStorage.removeItem("userName")
+    this.document.defaultView?.sessionStorage.removeItem("userId")
     this.isLogged.set(false)
+    this.username.set(null)
   }
 }
