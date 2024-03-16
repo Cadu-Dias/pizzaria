@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { ADMIN_ROUTES } from './pages/admin/admin.routes';
 
 export const APP_ROUTES: Routes = [
     {
