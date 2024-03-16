@@ -1,0 +1,20 @@
+<main class="user__orders">
+    <h3 class="user__orders__close" (click)="closePage()">X</h3>
+    <h1 class="user__orders__no__account" *ngIf="!isLogged">You haven't done a login or register in a valid account!</h1>
+    <h1 class="user__orders__no__products__text" *ngIf="userOrders.length <= 0 && isLogged">You haven't ordered anything in this account!</h1>
+    
+    <section class="user__orders__container" *ngIf="userOrders.length > 0 && isLogged">
+        <h1 class="user__orders__container__title">My Orders</h1>
+        <article class="user__orders__container__order" *ngFor="let order of userOrders">
+            <p class="user__orders__container__order__info">Placed on: <span>{{order.date}}</span></p>
+            <p class="user__orders__container__order__info">Name: <span>{{order.userName}}</span></p>
+            <p class="user__orders__container__order__info">Number: <span>{{order.phone}}</span></p>
+            <p class="user__orders__container__order__info">Address: <span>{{order.adress}}</span></p>
+            <p class="user__orders__container__order__info">Payment Method: <span>{{order.payment}}</span></p>
+            <p class="user__orders__container__order__info">Your Orders: <span>{{order.products}}</span></p>
+            <p class="user__orders__container__order__info">Total price: <span>{{order.totalPrice}}</span></p>
+            <p class="user__orders__container__order__info">Payment Status: <span>{{order.status}}</span></p>
+        </article>
+    </section>
+
+</main>

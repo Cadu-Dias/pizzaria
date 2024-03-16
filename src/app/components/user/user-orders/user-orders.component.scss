@@ -1,0 +1,85 @@
+$light-black: rgb(48,51,48);
+$light-grey: rgb(243,245, 242);
+$grey: rgb(151, 153, 150);
+$yellow: rgb(251,151,9);
+$red : rgb(244, 90, 54);
+
+
+.user__orders {
+    display: flex;
+    flex-direction: column;
+    background-color: $light-grey;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    &__close {
+        width: 90%;
+        text-align: end;
+        color: $red;
+        font-size: 25px;
+        margin: 20px 0 20px 0;
+        &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }
+
+    &__no__products__text, &__no__account {
+        font-size: 30px;
+        color: $light-black;
+        font-weight: bold;
+        width: 90%;
+        text-align: center;
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-self: center;
+        justify-content: center;
+        gap: 10px;
+        width: 90%;
+        height: fit-content;
+
+        &__title {
+            font-size: 30px;
+            margin:20px 0px;
+        }
+
+        &__order{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 13px;
+            width: 100%;
+            height: fit-content;
+            padding: 10px 0 10px 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgb(220, 219, 219);
+            
+            &__info {
+                font-size: 18px;
+                font-weight: bold;
+                color: $grey;
+
+                span {
+                    font-size: 18px;
+                    font-weight: normal;
+                    color: $light-black;
+                }
+
+                &:last-child {
+                    span {
+                        color: $red
+                    }
+                }
+            }
+        }
+
+    }
+
+}
