@@ -1,0 +1,90 @@
+$light-black: rgb(48,51,48);
+$yellow: rgb(251,151,9);
+$red : rgb(244, 90, 54);
+$light-grey: rgb(243,245, 242);
+$grey: rgb(151, 153, 150);
+.order {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    &__title {
+        font-size: 45px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 90%;
+        height: fit-content;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: white;
+        padding: 20px 0;
+        box-shadow: 0 2px 5px rgb(192, 193, 191);
+            
+        &__cart {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-evenly;
+            gap: 20px;
+            width: 98%;
+            height: fit-content;
+            background-color: $light-grey;   
+            border: none;
+            border-radius: 7px;
+            padding: 10px 0;
+            
+            
+            &__product {
+                width: fit-content;
+                padding: 10px 5px;
+                background-color: white;
+                border:none;
+                border-radius: 5px;
+                color: $light-black;
+                font-size: 20px;
+                font-weight: bold;
+                box-shadow: 0 2px 5px rgb(192, 193, 191);
+
+                span {
+                    color: $red;
+                }
+            }
+
+            &__no__product {
+                color: $red;
+                font-size: 25px;
+                font-weight: bold;
+            }
+        }
+
+        &__form {
+            width: 98%;
+            
+            & > * {
+                width: 100%;
+            }
+        }
+
+        @media only screen and (max-width:500px) {
+            & {
+                margin-left: 20px;
+                width: 98%;
+            }
+
+            .order__container__cart__no__product {
+                font-size: 17px;
+            }
+        }
+    }
+}

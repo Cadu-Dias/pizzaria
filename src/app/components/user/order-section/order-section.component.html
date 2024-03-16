@@ -1,0 +1,14 @@
+<section class="order">
+    <h1 class="order__title">ORDER NOW</h1>
+    <article class="order__container">
+        <div class="order__container__cart">
+            <h3 class="order__container__cart__product" 
+            *ngFor="let product of userCart()"
+            >{{product.name | lowercase}} <span>(${{product.value}}/- X {{product.qty}})</span></h3>
+            <h3 class="order__container__cart__no__product" *ngIf="userCart.length <= 0">No products selected yet!</h3>
+        </div>
+        <div class="order__container__form">
+            <app-order-form (completeFormEvent)="sendOrder($event)" [userCart]="userCart()"></app-order-form>
+        </div>
+    </article>
+</section>
