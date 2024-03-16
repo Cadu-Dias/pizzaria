@@ -1,0 +1,29 @@
+<div class="products__added__container__specific {{accountType.includes('user')? 'user':''}}">
+    <h4 [className]="componentsColor()"
+    >${{product.value}}/-</h4>
+    <img 
+        class="products__added__container__specific__image" 
+        src={{product.image}}
+        alt="Pizza Image"
+    >
+    <h4 class="products__added__container__specific__name">{{product.name}}</h4>
+    <div class="products__added__container__specific__ingredients">
+        <h5>Ingredients:</h5>
+        <h5 
+            *ngFor="let ingredient of product.ingredients" 
+            class="products__added__container__specific__ingredients__item">
+            {{ingredient}}
+        </h5>
+    </div>
+
+    <div class="products__added__container__specific__button" *ngIf="accountType.includes('admin')">
+        <button class="products__added__container__specific__button__update" (click)="showUpdateProductScreen()">Update</button>
+        <button class="products__added__container__specific__button__delete" (click)="deleteProduct()">Delete</button>
+    </div>
+
+    <div class="products__added__container__specific__user" *ngIf="accountType.includes('user')">
+        <input type="number" [(ngModel)]="qty" min="1" max="100" class="products__added__container__specific__user__qty">
+            <button class="products__added__container__specific__user__add__cart" 
+            (click)="addToCart()">Add to Cart</button>
+    </div>
+</div>
