@@ -1,0 +1,16 @@
+<section class="admin">
+    <h1 class="admin__title">ADMIN ACCOUNTS</h1>
+    <article class="admin__container">
+        <app-account-container 
+            [isForRegisterAdmin]="true"
+            (registerAdminEvent)="showRegisterAdminComponent()"
+        ></app-account-container>
+        @for (account of adminArray(); track $index) {
+            <app-account-container 
+                accountType="admin"
+                [adminAccount]="account"
+                (deleteAccountEvent)="deleteAccount($event)"
+            ></app-account-container>
+        }
+    </article>
+</section>

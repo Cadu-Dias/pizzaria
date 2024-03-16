@@ -1,0 +1,17 @@
+<div class="account__container">
+    
+    <h3 *ngIf="isForRegisterAdmin" class="account__container__information">Add New Admin</h3>
+    <h3 *ngIf="accountType ==='admin'"  class="account__container__information">Admin Id: <span>{{adminAccount.id}}</span></h3>
+    <h3 *ngIf="accountType === 'user'" class="account__container__information">User Id: <span>{{userAccount.id}}</span></h3>
+   
+
+    <h3 *ngIf="!isForRegisterAdmin" class="account__container__information">Username: <span>{{accountType === 'admin'? adminAccount.username : userAccount.username}}</span></h3>
+    <h3 *ngIf="accountType === 'user'" class="account__container__information">Email: <span>{{userAccount.email}}</span></h3> 
+    
+    <button class="account__container__register__admin" *ngIf="isForRegisterAdmin" (click)="registerAdmin()">Register New Admin</button>
+
+    <button class="account__container__delete" *ngIf="!isForRegisterAdmin" (click)="deleteAccount()">Delete</button>
+    <button class="account__container__admin__update" *ngIf="isAdminAccount" (click)="goUpdateProfilePage()">Update</button>
+ 
+</div>
+

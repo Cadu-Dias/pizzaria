@@ -1,0 +1,36 @@
+$grey: rgb(151, 153, 150);
+$light-grey: rgb(243,245, 242);
+$primary-blue: rgb(32, 123, 188);
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    &__title {
+        font-size: 30px;
+        font-weight: 900;
+        margin-top: 20px;
+    }
+
+    &__containers {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        width: 75%;
+        gap: 10px;
+
+        & > * {
+            width: 32%;
+            @media only screen and (max-width:800px) {
+                & {
+                    width: 90%;
+                }
+            }
+        }
+    }
+
+}
