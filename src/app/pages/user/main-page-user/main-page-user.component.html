@@ -1,1 +1,86 @@
-<p>main-page-user works!</p>
+
+<header class="panel">
+    <h2 class="panel__title" (click)="scrollTo('home')"><span>P</span>izza.</h2>
+        
+    <nav class="panel__nav__options">
+            <h4 class="panel__nav__options__home" (click)="scrollTo('home')">Home</h4>
+            <h4 class="panel__nav__options__about" (click)="scrollTo('about')">About</h4>
+            <h4 class="panel__nav__options__menu" (click)="scrollTo('menu')">Menu</h4>
+            <h4 class="panel__nav__options__order"(click)="scrollTo('order')">Order</h4>
+            <h4 class="panel__nav__options__faq"(click)="scrollTo('faq')">Faq</h4>
+    </nav>
+    <div class="panel__options">
+            <label for="panel__options__nav__hamburger">&#9776;</label>
+            <input type="checkbox" id="panel__options__nav__hamburger"/>
+            <nav class="panel__nav__hamburger">
+                <h4 class="panel__nav__hamburger__home"(click)="scrollTo('home')">Home</h4>
+                <h4 class="panel__nav__hamburger__about"(click)="scrollTo('about')">About</h4>
+                <h4 class="panel__nav__hamburger__menu"(click)="scrollTo('menu')">Menu</h4>
+                <h4 class="panel__nav__hamburger__order"(click)="scrollTo('order')">Order</h4>
+                <h4 class="panel__nav__hamburger__faq"(click)="scrollTo('faq')">Faq</h4>
+            </nav>
+            <div class="a">
+                <img 
+                    class="panel__options__icons__user" 
+                    src="assets/images/user-icon-red.png" 
+                    alt="Account icon"
+                    (click)="setViewAccountComponent()"
+                >
+                <img 
+                    class="panel__options__icons__orders" 
+                    src="assets/images/orders-icon.png" 
+                    alt="Account icon"
+                    (click)="setViewOrderComponent()"
+                >
+            <img 
+                    class="panel__options__icons__cart" 
+                    src="assets/images/cart__icon.png" 
+                    alt="Account icon"
+                    (click)="setViewCartComponent()"
+            >
+        </div>
+    </div>   
+</header>
+    
+<main class="content" id="home">
+    <section class="content__banner">
+        <app-banner-section></app-banner-section>
+    </section>
+    <section class="content__about" id="about">
+        <app-about-section></app-about-section>
+    </section>
+    <section class="content__products" id="menu">
+        <app-menu-section [productsArray]="productArray" (addToCartEvent)="addToCart($event)"></app-menu-section>
+    </section>
+    <section class="content__orders" id="order">
+        <app-order-section [userCart]="userCart" (sendOrderEvent)="postOrder($event)"></app-order-section>
+    </section>
+    <section class="content__faq" id="faq">
+        <app-faq-section></app-faq-section>
+    </section>
+    <section class="content__contact">
+        <app-contact-section></app-contact-section>
+    </section>
+</main>
+    
+<footer class="copyright">
+    <h2 class="copyright__text" >&#64; copyright &#64; 2024 by <span>Cadu Dias</span> | all rights reserved!</h2>
+</footer>
+
+<div class="other__pages">
+    <div class="other__pages__user__account" #userAccountPage>
+        <app-register-login-user 
+            (closePageEvent)="setViewAccountComponent()"
+            (registerUserEvent)="registerUser($event)"
+            (loginUserEvent)="loginUser($event)"
+            ></app-register-login-user>
+    </div>
+    <div class="other__pages__user__cart" #userCartPage>
+        <app-user-cart [userCart]="userCart" (closePageEvent)="setViewCartComponent()" (goToOrderSectionEvent)="scrollTo($event)"
+        (removeItemEvent)="removeItem($event)" (editItemEvent)="editItem($event)" [totalPrice]="totalPrice"
+        ></app-user-cart>
+    </div>
+    <div class="other__pages__user__order" #userOrderPage>
+        <app-user-orders (closePageEvent)="setViewOrderComponent()" [userOrders]="orderArray" [isLogged]="isLoggedIn"></app-user-orders>
+    </div>
+</div>
