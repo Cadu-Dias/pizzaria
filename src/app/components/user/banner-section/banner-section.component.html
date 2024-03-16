@@ -1,0 +1,12 @@
+<section appBackgroundImage [backgrundImageUrl]="this.bannerBackgroundImage()" class="banner">
+    <article class="banner__information">
+        <img src={{this.selectedBannerInformation.imageUrl}} alt="Banner Image" class="banner__information__image">
+        <div class="banner__information__container">
+            <h1 class="banner__information__container__title" >{{this.selectedBannerInformation.title}}</h1>
+            <div class="banner__information__container__buttons">
+                <button class="banner__information__container__buttons__left" (click)="previous()"><</button>
+                <button class="banner__information__container__buttons__right" (click)="next()">></button>
+            </div>
+        </div>
+    </article>
+</section>
