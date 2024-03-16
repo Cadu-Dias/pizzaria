@@ -1,0 +1,48 @@
+$primary-blue: rgb(32, 123, 188);
+$light-black: rgb(48,51,48);
+$light-grey: rgb(243,245, 242);
+$grey: rgb(151, 153, 150);
+$yellow: rgb(251,151,9);
+$red : rgb(244, 90, 54);
+
+.account__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    height: fit-content;
+    padding: 15px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgb(192, 193, 191);
+    &__input {
+        width: 90%;
+        padding: 15px 10px;
+        background-color: $light-grey;
+        border: none;
+        border-radius: 5px;
+
+        &::placeholder {
+            font-size: 16px;
+            color: $grey;
+        }
+    }
+
+    &__div {
+        width: 92%;
+        &__button {
+            width: 100%;
+            padding: 10px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
