@@ -1,1 +1,41 @@
-<p>main-page-admin works!</p>
+
+<header class="panel">
+    <h2 class="panel__title">Admin<span>Panel</span></h2>
+    
+    <nav class="panel__nav__options">
+        <h4 class="panel__nav__options__home" routerLink="/admin/home/dashboard">Home</h4>
+        <h4 class="panel__nav__options__products" routerLink="/admin/home/products">Products</h4>
+        <h4 class="panel__nav__options__orders" routerLink="/admin/home/orders">Orders</h4>
+        <h4 class="panel__nav__options__admins" routerLink="/admin/home/admins">Admins</h4>
+        <h4 class="panel__nav__options__users"routerLink="/admin/home/users">Users</h4>
+    </nav>
+    <div class="panel__options">
+        <label for="panel__options__nav__hamburger">&#9776;</label>
+        <input type="checkbox" id="panel__options__nav__hamburger"/>
+        <nav class="panel__nav__hamburger">
+            <h4 class="panel__nav__hamburger__home" routerLink="/admin/home/dashboard">Home</h4>
+            <h4 class="panel__nav__hamburger__products" routerLink="/admin/home/products">Products</h4>
+            <h4 class="panel__nav__hamburger__orders" routerLink="/admin/home/orders">Orders</h4>
+            <h4 class="panel__nav__hamburger__admins" routerLink="/admin/home/admins">Admins</h4>
+            <h4 class="panel__nav__hamburger__users" routerLink="/admin/home/users">Users</h4>
+        </nav>
+        <img 
+            class="panel__options__image" 
+            src="assets/images/user__icon.png" 
+            alt="Account icon"
+            (click)="setViewProfileBox()"
+        >
+    </div>   
+</header>
+
+<main class="options__body">
+    <router-outlet>
+
+    </router-outlet>
+</main>
+
+<div class="profile__box" #profileBox>
+    <h4 class="profile__box__user">User: {{profileName}}</h4>
+    <button class="profile__box__update" (click)="goUpdateProfilePage()">Update Profile</button>
+    <button class="profile__box__logout" (click)="logout()">Logout</button>
+</div>

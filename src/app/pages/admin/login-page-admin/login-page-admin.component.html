@@ -1,1 +1,11 @@
-<p>login-page-admin works!</p>
+<main class="login__page">  
+    <app-account-form 
+    formType="login" 
+    accountType="admin" 
+    formTitle="Login Admin"
+    buttonText="Login"
+    (adminFormEvent)="verifyAccount($event)"
+    >
+    </app-account-form>
+</main>
+
