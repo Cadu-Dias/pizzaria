@@ -1,12 +1,11 @@
 import { Component, Signal, signal } from '@angular/core';
 import { AboutContainerComponent } from '../about-container/about-container.component';
 import { AboutContainer } from '../../../core/models/interfaces/interfaces';
-import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-about-section',
   standalone: true,
-  imports: [AboutContainerComponent, NgFor],
+  imports: [AboutContainerComponent],
   templateUrl: './about-section.component.html',
   styleUrl: './about-section.component.scss'
 })

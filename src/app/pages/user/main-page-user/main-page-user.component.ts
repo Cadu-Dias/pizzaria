@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Signal, ViewChild, WritableSignal, signal } from '@angular/core';
 import { BannerSectionComponent } from '../../../components/user/banner-section/banner-section.component';
 import { AboutSectionComponent } from '../../../components/user/about-section/about-section.component';
 import { MenuSectionComponent } from '../../../components/user/menu-section/menu-section.component';
@@ -42,15 +42,15 @@ export class MainPageUserComponent {
   isAccountPageVisible: boolean = false
   isOrderPageVisible: boolean = false
   isCartPageVisible: boolean = false;
-  isLoggedIn : boolean = sessionStorage.getItem("userId") !== null? true: false;
+  isLoggedIn : WritableSignal<boolean> = signal(false);
 
   subscriptionProducts : Subscription = new Subscription()
   subscriptionOrders: Subscription = new Subscription()
   subscriptionUser: Subscription = new Subscription()
 
-  productArray : Product[] = [];
-  userCart: Product[] = [];
-  orderArray: Order[] = [];
+  productArray : WritableSignal<Product[]>  = signal([]);
+  userCart: WritableSignal<Product[]> = signal([]);
+  orderArray : WritableSignal<Order[]> = signal([]);
   userArray: User[] = [];
 
   constructor(
@@ -62,16 +62,16 @@ export class MainPageUserComponent {
 
   ngOnInit() : void {
     this.subscriptionProducts = this.productsService.getProducts().subscribe(
-      (value) => this.productArray = value
+      (value) => this.productArray.set(value)
     )
 
     this.subscriptionUser = this.userService.getUsers().subscribe(
       (value) => this.userArray = value
     )
 
-    if(this.isLoggedIn) {
+    if(this.isLoggedIn()) {
       this.subscriptionOrders = this.orderService.getUserOrders(sessionStorage.getItem("userId")!).subscribe(
-        (value) => this.orderArray = value
+        (value) => this.orderArray.set(value) 
       )
     }
   }
@@ -85,15 +85,20 @@ export class MainPageUserComponent {
   }
 
   addToCart(product: Product) {
-    let oldProductIndex = this.userCart.findIndex(x => x.id == product.id);
+    let oldProductIndex = this.userCart().findIndex(x => x.id == product.id);
     if(oldProductIndex!== -1 && parseInt(product.qty!) <= 0) {
       this.removeItem(product)
       return;
     }
     else if(oldProductIndex !== -1) {
-      this.userCart[oldProductIndex] = product
+      this.userCart.update(
+        userCart => {
+          userCart[oldProductIndex] = product
+          return userCart
+        }
+      )
       this.totalPrice = 0
-      this.userCart.map((value) => {
+      this.userCart().map((value) => {
         this.totalPrice += parseInt(value.qty!) * parseInt(value.value) 
       })
       return;
@@ -102,22 +107,34 @@ export class MainPageUserComponent {
       return;
     }
     this.totalPrice += parseInt(product.qty!) * parseInt(product.value) 
-    this.userCart.push(product);
+    this.userCart.update(
+      userCart => {
+        userCart.push(product)
+        return userCart
+      }
+    )
   }
 
   postOrder(order: Order) {
-    this.userCart.map((value) => {
+    this.userCart().map((value) => {
       order.products.push(`${value.name} (${value.value} X ${value.qty})`)
     })
     order.totalPrice = this.totalPrice.toString()
     setTimeout(() => {
       this.subscriptionOrders = this.orderService.postOrder(order).subscribe(
-        () => this.orderArray.push(order)
+        {
+          next: () => {
+            this.orderArray.update(orderArray => {
+              orderArray.push(order)
+              return orderArray
+            })
+          }
+        }
       )
     }, 1000)
-    this.orderArray.push(order)
-    this.orderArray.pop()
-    this.userCart = [];
+    this.orderArray().push(order)
+    this.orderArray().pop()
+    
   }
 
   setViewAccountComponent() {
@@ -168,15 +185,25 @@ export class MainPageUserComponent {
 
   removeItem(product: Product) {
     this.totalPrice -= parseInt(product.qty!) * parseInt(product.value)
-    let productIndex = this.userCart.indexOf(product)
-    this.userCart.splice(productIndex, 1)
+    let productIndex = this.userCart().indexOf(product)
+    this.userCart.update(
+      userCart => {
+        userCart.splice(productIndex, 1)
+        return userCart
+      }
+    )
   }
 
   editItem(product: Product) {
-    let productIndex = this.userCart.indexOf(product)
-    this.userCart[productIndex] = product
+    let productIndex = this.userCart().indexOf(product)
+    this.userCart.update(
+      userCart => {
+        userCart[productIndex] = product
+        return userCart
+      }
+    )
     this.totalPrice = 0
-    this.userCart.map((value) => {
+    this.userCart().map((value) => {
       this.totalPrice += parseInt(value.qty!) * parseInt(value.value) 
     })
   }

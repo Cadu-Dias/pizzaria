@@ -1,30 +1,33 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, InputSignal, Output, input, signal } from '@angular/core';
 import { v4 as uuid } from 'uuid';
 import { Order, Product } from '../../../core/models/interfaces/interfaces';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NgIf } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-order-form',
   standalone: true,
-  imports: [ NgIf, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './order-form.component.html',
   styleUrl: './order-form.component.scss'
 })
 export class OrderFormComponent {
 
-  @Input({required: true}) userCart!: Product[]
+  userCart: InputSignal<Product[]> = input.required();
   @Output() completeFormEvent : EventEmitter<Order> = new EventEmitter
-
+  
   orderForm!: FormGroup;
   isLogged : boolean = false; 
   order!: Order;
   products!: string[];
   totalPrice: number= 0;
-  
+
   constructor(
-    private formBuilder: FormBuilder
-  ) {}
+    private formBuilder: FormBuilder,
+    @Inject(DOCUMENT) private document : Document
+  ) {
+
+  }
 
   ngOnInit(): void {
       this.orderForm = this.formBuilder.group({

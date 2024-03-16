@@ -1,8 +1,10 @@
 <section class="about">
     <h1 class="about__title">ABOUT US</h1>
     <article class="about__containers">
-        <app-about-container *ngFor="let aboutContainer of aboutContainersArray()"
-        [aboutInformation]="aboutContainer"
-        ></app-about-container>
+        @for (aboutContainer of aboutContainersArray(); track $index) {
+            <app-about-container
+            [aboutInformation]="aboutContainer"
+            ></app-about-container>
+        }
     </article>
 </section>

@@ -1,32 +1,38 @@
 <main class="user__cart">
     <h3 class="user__cart__close" (click)="closePage()">X</h3>
-    <h1 class="user__cart__no__products__text" *ngIf="userCart.length <= 0">There is 0 products in your cart!</h1>
+    @if (userCart().length <= 0) {
+        <h1 class="user__cart__no__products__text" *ngIf="userCart.length <= 0">There is 0 products in your cart!</h1>
+    } 
     <section class="user__cart__container">
-        <article class="user__cart__container__product" *ngFor="let item of userCart">
-            <div class="user__cart__container__product__lYeft">
-                <img src={{item.image}} alt="" class="user__cart__container__product__left__image">
-            </div>
-            <div class="user__cart__container__product__center">
-                <div class="user__cart__container__product__center__top">
-                    <h1 class="user__cart__container__product__center__top__name">{{item.name}} <span>(${{item.value}}/- X {{item.qty}})</span></h1>
+        @for (item of userCart(); track $index) {
+            <article class="user__cart__container__product" >
+                <div class="user__cart__container__product__lYeft">
+                    <img src={{item.image}} alt="" class="user__cart__container__product__left__image">
                 </div>
-                <div class="user__cart__container__product__center__bottom">
-                    <input type="number" min="1" max="100" [(ngModel)]="item.qty" class="user__cart__container__product__center__bottom__qty">
-                    <button class="user__cart__container__product__center__bottom__edit" (click)="editQty(item)">
-                        <img 
-                            src="assets/images/edit__icon.png"
-                            class="user__cart__container__product__center__bottom__edit__image" 
-                            alt="" >
-                    </button>
+                <div class="user__cart__container__product__center">
+                    <div class="user__cart__container__product__center__top">
+                        <h1 class="user__cart__container__product__center__top__name">{{item.name}} <span>(${{item.value}}/- X {{item.qty}})</span></h1>
+                    </div>
+                    <div class="user__cart__container__product__center__bottom">
+                        <input type="number" min="1" max="100" [(ngModel)]="item.qty" class="user__cart__container__product__center__bottom__qty">
+                        <button class="user__cart__container__product__center__bottom__edit" (click)="editQty(item)">
+                            <img 
+                                src="assets/images/edit__icon.png"
+                                class="user__cart__container__product__center__bottom__edit__image" 
+                                alt="" >
+                        </button>
+                    </div>
                 </div>
-            </div>
-            <div class="user__cart__container__product__right">
-                <button class="user__cart__container__product__right__remove" (click)="removeItem(item)">X</button>
-            </div>
-        </article> 
+                <div class="user__cart__container__product__right">
+                    <button class="user__cart__container__product__right__remove" (click)="removeItem(item)">X</button>
+                </div>
+            </article> 
+        }
         
-        <h1 class="user__cart__container__total__price" *ngIf="userCart.length > 0">Total Price:<span>R${{totalPrice}}</span></h1>
-        <button class="user__cart__container__order" *ngIf="userCart.length > 0" (click)="goToOrderSection()">Order</button>
+        @if (userCart().length > 0) {
+            <h1 class="user__cart__container__total__price">Total Price:<span>R${{totalPrice}}</span></h1>
+            <button class="user__cart__container__order" (click)="goToOrderSection()">Order</button>
+        }
     </section>
 </main>
 

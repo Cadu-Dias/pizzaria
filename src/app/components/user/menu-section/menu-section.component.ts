@@ -1,12 +1,11 @@
 import { Component, EventEmitter, InputSignal, Output, input } from '@angular/core';
 import { ProductContainerComponent } from '../../../shared/components/product-container/product-container.component';
 import { Product } from '../../../core/models/interfaces/interfaces';
-import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-menu-section',
   standalone: true,
-  imports: [ ProductContainerComponent, NgFor],
+  imports: [ ProductContainerComponent ],
   templateUrl: './menu-section.component.html',
   styleUrl: './menu-section.component.scss'
 })

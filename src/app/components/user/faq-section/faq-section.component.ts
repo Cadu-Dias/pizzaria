@@ -1,11 +1,10 @@
 import { Component, ElementRef, ViewChildren } from '@angular/core';
 import { Faq } from '../../../core/models/interfaces/interfaces';
-import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-faq-section',
   standalone: true,
-  imports: [ NgFor ],
+  imports: [],
   templateUrl: './faq-section.component.html',
   styleUrl: './faq-section.component.scss'
 })

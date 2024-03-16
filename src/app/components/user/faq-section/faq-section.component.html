@@ -1,16 +1,18 @@
 <section class="faq">
     <h1 class="faq__title">FAQ</h1>
     <article class="faq__container">
-        <div class="faq__container__especific" *ngFor="let faq of faqArray" (click)="activateFaq(faq)" #faqContainer>
-            <div class="faq__container__especific__top">
-                <h2 class="faq__container__especific__top__text">{{faq.title}}</h2>
-                <h2 class="faq__container__especific__top__arrow">></h2>
+        @for (faq of faqArray; track $index) {
+            <div class="faq__container__especific" (click)="activateFaq(faq)" #faqContainer>
+                <div class="faq__container__especific__top">
+                    <h2 class="faq__container__especific__top__text">{{faq.title}}</h2>
+                    <h2 class="faq__container__especific__top__arrow">></h2>
+                </div>
+                <div class="faq__container__especific__bottom">
+                    <h4 class="faq__container__especific__bottom__text">
+                        {{faq.description}}
+                    </h4>
+                </div>
             </div>
-            <div class="faq__container__especific__bottom">
-                <h4 class="faq__container__especific__bottom__text">
-                    {{faq.description}}
-                </h4>
-            </div>
-        </div>
+        }
     </article>
 </section>

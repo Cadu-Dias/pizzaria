@@ -1,4 +1,4 @@
-import { Component, Input, Output } from '@angular/core';
+import { Component, Input, InputSignal, Output, input } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
 import { EventEmitter } from '@angular/core';
 import { Product } from '../../../core/models/interfaces/interfaces';
@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './user-cart.component.scss'
 })
 export class UserCartComponent {
-  @Input({required: true}) userCart: Product[] = []
+  userCart: InputSignal<Product[]> = input.required<Product[]>();
   @Input({required: true}) totalPrice!: number;
   @Output() closePageEvent : EventEmitter<void> = new EventEmitter<void>();
   @Output() removeItemEvent : EventEmitter<Product> = new EventEmitter<Product>()

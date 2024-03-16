@@ -50,10 +50,10 @@
         <app-about-section></app-about-section>
     </section>
     <section class="content__products" id="menu">
-        <app-menu-section [productsArray]="productArray" (addToCartEvent)="addToCart($event)"></app-menu-section>
+        <app-menu-section [productsArray]="productArray()" (addToCartEvent)="addToCart($event)"></app-menu-section>
     </section>
     <section class="content__orders" id="order">
-        <app-order-section [userCart]="userCart" (sendOrderEvent)="postOrder($event)"></app-order-section>
+        <app-order-section [userCart]="userCart()" (sendOrderEvent)="postOrder($event)"></app-order-section>
     </section>
     <section class="content__faq" id="faq">
         <app-faq-section></app-faq-section>
@@ -76,11 +76,11 @@
             ></app-register-login-user>
     </div>
     <div class="other__pages__user__cart" #userCartPage>
-        <app-user-cart [userCart]="userCart" (closePageEvent)="setViewCartComponent()" (goToOrderSectionEvent)="scrollTo($event)"
+        <app-user-cart [userCart]="userCart()" (closePageEvent)="setViewCartComponent()" (goToOrderSectionEvent)="scrollTo($event)"
         (removeItemEvent)="removeItem($event)" (editItemEvent)="editItem($event)" [totalPrice]="totalPrice"
         ></app-user-cart>
     </div>
     <div class="other__pages__user__order" #userOrderPage>
-        <app-user-orders (closePageEvent)="setViewOrderComponent()" [userOrders]="orderArray" [isLogged]="isLoggedIn"></app-user-orders>
+        <app-user-orders (closePageEvent)="setViewOrderComponent()" [userOrders]="orderArray()" [isLogged]="isLoggedIn()"></app-user-orders>
     </div>
 </div>
