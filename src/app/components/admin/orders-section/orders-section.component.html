@@ -1,0 +1,12 @@
+<section class="orders">
+    <h1 class="orders__title">PLACED ORDERS</h1>
+    <article class="orders__containers">
+        @for (order of orderArray(); track $index) {
+            <app-order-container 
+                [order]="order"
+                (deleteOrderEvent)="deleteOrder($event)"
+                (updateOrderEvent)="updateOrder($event)"
+            ></app-order-container>
+        }
+    </article>
+</section>

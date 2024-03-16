@@ -1,0 +1,19 @@
+<div class="orders__containers__specific">
+    <h4 class="orders__containers__specific__order__information">User Id: <span>{{order.userId}}</span></h4>
+    <h4 class="orders__containers__specific__order__information">Placed On: <span>{{order.date}}</span></h4>
+    <h4 class="orders__containers__specific__order__information">Name: <span>{{order.userName}}</span></h4>
+    <h4 class="orders__containers__specific__order__information">Phone: <span>{{order.phone}}</span></h4>
+    <h4 class="orders__containers__specific__order__information">Adress: <span>{{order.adress}}</span></h4>
+    <h4 class="orders__containers__specific__order__information">Total Products: <span>{{order.products}}</span></h4>
+    <h4 class="orders__containers__specific__order__information">Payment Method: <span>{{order.payment}}</span></h4>
+
+    <select class="orders__containers__specific__order__status" [(ngModel)]="orderStatus">
+        <option value="Pending" class="orders__containers__specific__order__status">Pending</option>
+        <option value="Completed" class="orders__containers__specific__order__status">Completed</option>
+    </select>
+
+    <div class="orders__containers__specific__buttons">
+        <button class="orders__containers__specific__buttons__update"  (click)="updateOrder()">Update</button>
+        <button class="orders__containers__specific__buttons__delete" (click)="deleteOrder()">Delete</button>
+    </div>
+</div>
