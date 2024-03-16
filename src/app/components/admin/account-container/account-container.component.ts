@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Admin, User } from '../../../core/models/interfaces/interfaces';
-import { NgIf } from '@angular/common';
+import { DOCUMENT, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-account-container',
@@ -10,7 +10,7 @@ import { NgIf } from '@angular/common';
   templateUrl: './account-container.component.html',
   styleUrl: './account-container.component.scss'
 })
-export class AccountContainerComponent {
+export class AccountContainerComponent implements OnInit{
   @Input() adminAccount!: Admin
   @Input() userAccount!: User;
   @Input() accountType: string = '';
@@ -20,12 +20,13 @@ export class AccountContainerComponent {
   isAdminAccount!: boolean;
 
   constructor(
-    private router: Router 
+    private router: Router,
+    @Inject(DOCUMENT) private document: Document
   ) {}
   
   ngOnInit(): void {
     if(this.adminAccount) {
-      this.isAdminAccount = sessionStorage.getItem("id") === this.adminAccount.id
+      this.isAdminAccount = this.document.defaultView?.sessionStorage.getItem("id") === this.adminAccount.id
     }
   }
   registerAdmin() {

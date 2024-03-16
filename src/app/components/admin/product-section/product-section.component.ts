@@ -1,4 +1,4 @@
-import { Component, WritableSignal, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, WritableSignal, signal } from '@angular/core';
 import { ProductContainerComponent } from '../../../shared/components/product-container/product-container.component';
 import { ProductFormComponent } from '../product-form/product-form.component';
 import { Product } from '../../../core/models/interfaces/interfaces';
@@ -14,7 +14,7 @@ import { TitleCasePipe } from '@angular/common';
   templateUrl: './product-section.component.html',
   styleUrl: './product-section.component.scss'
 })
-export class ProductSectionComponent {
+export class ProductSectionComponent implements OnInit, OnDestroy{
 
   subscription : Subscription = new Subscription();
   productsArray : WritableSignal<Product[]> = signal([])

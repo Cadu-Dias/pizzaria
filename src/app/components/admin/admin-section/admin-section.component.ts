@@ -1,4 +1,4 @@
-import { Component, WritableSignal, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, WritableSignal, signal } from '@angular/core';
 import { AccountContainerComponent } from '../account-container/account-container.component';
 import { Subscription } from 'rxjs';
 import { AdminService } from '../../../core/services/accounts/admin/admin.service';
@@ -12,7 +12,7 @@ import { Admin } from '../../../core/models/interfaces/interfaces';
   templateUrl: './admin-section.component.html',
   styleUrl: './admin-section.component.scss'
 })
-export class AdminSectionComponent {
+export class AdminSectionComponent implements OnInit, OnDestroy{
 
   adminArray: WritableSignal<Admin[]> = signal([]);
   subscription: Subscription = new Subscription();

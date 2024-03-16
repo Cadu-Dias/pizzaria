@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Order } from '../../../core/models/interfaces/interfaces';
 import { FormsModule } from '@angular/forms';
 
@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './order-container.component.html',
   styleUrl: './order-container.component.scss'
 })
-export class OrderContainerComponent {
+export class OrderContainerComponent implements OnInit{
   @Input({required: true}) order! : Order;
   @Output() deleteOrderEvent: EventEmitter<Order> = new EventEmitter<Order>();
   @Output() updateOrderEvent: EventEmitter<Order> = new EventEmitter<Order>();

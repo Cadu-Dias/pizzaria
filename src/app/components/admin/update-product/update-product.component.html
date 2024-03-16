@@ -1,0 +1,19 @@
+<section class="update__product">
+    <h1 class="update__product__title">UPDATE PRODUCT</h1>
+    <article class="update__product__container">
+        <img 
+            src="{{product? product.image : ''}} " 
+            alt="{{product? product.name : ''}} image"
+            class="update__product__container__image"
+        >
+        @if (product) {
+            <app-product-form  
+                (formAction)="updateProduct($event)" 
+                buttonText="Update Product"
+                [showCancelButton]="true"
+                (cancelButton)="goBack()"
+                [product]="product"
+            ></app-product-form>
+        }
+    </article>
+</section>

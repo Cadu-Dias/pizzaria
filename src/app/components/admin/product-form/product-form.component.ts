@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, Output, WritableSignal, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, WritableSignal, signal } from '@angular/core';
 import { Product } from '../../../core/models/interfaces/interfaces';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { v4 as uuid } from 'uuid';
@@ -9,7 +9,7 @@ import { v4 as uuid } from 'uuid';
   templateUrl: './product-form.component.html',
   styleUrl: './product-form.component.scss'
 })
-export class ProductFormComponent {
+export class ProductFormComponent implements OnInit {
   pizzaIngredients: string[] = [
     "cheese",
     "tomato sauce",

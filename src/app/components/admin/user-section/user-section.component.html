@@ -1,0 +1,13 @@
+<section class="user">
+    <h1 class="user__title">USERS ACCOUNTS</h1>
+    <article class="user__container">
+        @for (user of userArray(); track $index) {
+            <app-account-container 
+                accountType="user"
+                [userAccount]="user"
+                (deleteAccountEvent)="deleteAccount($event)"
+            ></app-account-container>
+        }
+    </article>
+</section>
+

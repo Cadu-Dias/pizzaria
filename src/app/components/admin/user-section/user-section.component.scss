@@ -1,0 +1,32 @@
+.user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    &__title {
+        font-size: 30px;
+        font-weight: 900;
+        margin-top: 20px;
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        width: 75%;
+        gap: 20px;
+        & > * {
+            width: 320px;
+        }
+
+        @media only screen and (max-width:350px) {
+            & > * {
+                width: 250px;
+            }
+        }
+    }
+}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DashboardContainerComponent } from '../dashboard-container/dashboard-container.component';
 import { AdminService } from '../../../core/services/accounts/admin/admin.service';
 import { UserService } from '../../../core/services/accounts/user/user.service';
@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './dashboard-section.component.html',
   styleUrl: './dashboard-section.component.scss'
 })
-export class DashboardSectionComponent {
+export class DashboardSectionComponent implements OnInit, OnDestroy{
   dashboardContainerArray: Array<DashboardContainer> = [
     {
       value: "$18/-", 

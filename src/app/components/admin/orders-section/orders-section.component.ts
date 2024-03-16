@@ -1,4 +1,4 @@
-import { Component, WritableSignal, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, WritableSignal, signal } from '@angular/core';
 import { Order } from '../../../core/models/interfaces/interfaces';
 import { OrdersService } from '../../../core/services/orders/orders.service';
 import { Subscription } from 'rxjs';
@@ -11,7 +11,7 @@ import { OrderContainerComponent } from '../order-container/order-container.comp
   templateUrl: './orders-section.component.html',
   styleUrl: './orders-section.component.scss'
 })
-export class OrdersSectionComponent {
+export class OrdersSectionComponent implements OnInit, OnDestroy{
 
   orderArray : WritableSignal<Order[]> = signal([])
   subscription: Subscription = new Subscription();
