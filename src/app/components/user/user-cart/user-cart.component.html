@@ -1,7 +1,7 @@
 <main class="user__cart">
     <h3 class="user__cart__close" (click)="closePage()">X</h3>
     @if (userCart().length <= 0) {
-        <h1 class="user__cart__no__products__text" *ngIf="userCart.length <= 0">There is 0 products in your cart!</h1>
+        <h1 class="user__cart__no__products__text">There is 0 products in your cart!</h1>
     } 
     <section class="user__cart__container">
         @for (item of userCart(); track $index) {

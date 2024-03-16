@@ -1,12 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../../core/models/interfaces/interfaces';
-import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-product-container',
   standalone: true,
-  imports: [ NgIf, NgFor, FormsModule ],
+  imports: [ FormsModule ],
   templateUrl: './product-container.component.html',
   styleUrl: './product-container.component.scss'
 })

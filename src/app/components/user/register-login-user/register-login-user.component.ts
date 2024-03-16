@@ -1,13 +1,12 @@
 import { Component, EventEmitter, OnInit, Output, WritableSignal, signal } from '@angular/core';
 import { AccountFormComponent } from '../../../shared/components/account-form/account-form.component';
-import { NgIf } from '@angular/common';
 import { User } from '../../../core/models/interfaces/interfaces';
 import { Router } from 'express';
 
 @Component({
   selector: 'app-register-login-user',
   standalone: true,
-  imports: [ AccountFormComponent, NgIf ],
+  imports: [ AccountFormComponent ],
   templateUrl: './register-login-user.component.html',
   styleUrl: './register-login-user.component.scss'
 })

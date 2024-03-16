@@ -1,55 +1,66 @@
-<form action="" class="account__form" [formGroup]="formAccount">
-    <h1 class="account__form__title">{{formTitle | uppercase}}</h1>
-    <input 
-        type="text" 
-        class="account__form__input"
-        placeholder="Enter {{formType.includes('register')? 'a': 'your'}} {{formType.includes('update')? 'new': ''}} username"
-        *ngIf="accountType.includes('admin') || accountType.includes('user') && formType.includes('register')"
-        formControlName="username"
-    >
-    <input 
-        type="text" 
-        class="account__form__input"
-        placeholder="Entre {{formType.includes('register')? 'a': 'your'}} e-mail"
-        *ngIf="accountType.includes('user')"
-        formControlName="email"
-    >
-    <input 
-        type="password" 
-        class="account__form__input"
-        placeholder="Enter {{formType.includes('register')? 'a': 'your'}} {{formType.includes('update')? 'old': ''}} password"
-        formControlName="password"
-    >
-    <input 
-        type="password"
-        class="account__form__input"
-        placeholder="Enter a new password"
-        *ngIf="formType.includes('update')"
-        formControlName="newPassword"
-        >
-    <input 
-        type="password"
-        class="account__form__input"
-        placeholder="Confirm your new password"
-        *ngIf="formType.includes('update') || formType.includes('register')"
-        formControlName="confirmPassword"
-        >
-    <div [ngSwitch]="accountType" class="account__form__div">
-        <button 
-            *ngSwitchCase="'user'" 
-            style="background-color: rgb(244, 90, 54);" 
-            (click)="formAction()"
-            class="account__form__div__button"  
-            >{{buttonText}}
-        </button>
-        <button 
-            *ngSwitchDefault 
-            style="background-color: rgb(32, 123, 188);" 
-            (click)="formAction()"
-            class="account__form__div__button"  
+@if (formAccount) {
+    <form class="account__form" [formGroup]="formAccount">
+        <h1 class="account__form__title">{{formTitle | uppercase}}</h1>
+        @if(this.accountType.includes('admin') || this.accountType.includes('user') && this.formType.includes('register')) {
+            <input 
+                type="text" 
+                class="account__form__input"
+                placeholder="Enter {{formType.includes('register')? 'a': 'your'}} {{formType.includes('update')? 'new': ''}} username"
+                formControlName="username"
             >
-            {{buttonText}}
-        </button>
-    </div>
-</form>
+        }
+        @if (this.accountType.includes('user')) {
+            <input 
+                type="text" 
+                class="account__form__input"
+                placeholder="Entre {{formType.includes('register')? 'a': 'your'}} e-mail"
+                formControlName="email"
+            >
+        }
+        <input 
+            type="password" 
+            class="account__form__input"
+            placeholder="Enter {{formType.includes('register')? 'a': 'your'}} {{formType.includes('update')? 'old': ''}} password"
+            formControlName="password"
+        >
+        @if (formType.includes('update')) {
+            <input 
+                type="password"
+                class="account__form__input"
+                placeholder="Enter a new password"
+                formControlName="newPassword"
+            >
+        }
 
+        @if (formType.includes('update') || formType.includes('register')) {
+            <input 
+                type="password"
+                class="account__form__input"
+                placeholder="Confirm your new password"
+                formControlName="confirmPassword"
+            >
+        }
+            
+        <div class="account__form__div">
+            @switch (this.accountType) {
+                @case ('user') {
+                    <button 
+                        style="background-color: rgb(244, 90, 54);" 
+                        (click)="formAction()"
+                        class="account__form__div__button"  
+                        >{{buttonText}}
+                    </button>
+                }
+                @default {
+                    <button 
+                        style="background-color: rgb(32, 123, 188);" 
+                        (click)="formAction()"
+                        class="account__form__div__button"  
+                        >
+                        {{buttonText}}
+                    </button>
+                }
+            }
+        </div>
+    </form>
+}    

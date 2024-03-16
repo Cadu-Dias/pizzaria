@@ -1,12 +1,12 @@
 import { Component, Output, EventEmitter, InputSignal, input } from '@angular/core';
 import { Order, Product } from '../../../core/models/interfaces/interfaces';
 import { OrderFormComponent } from '../order-form/order-form.component';
-import { LowerCasePipe, NgFor, NgIf } from '@angular/common';
+import { LowerCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-order-section',
   standalone: true,
-  imports: [ OrderFormComponent, NgFor, LowerCasePipe, NgIf ],
+  imports: [ OrderFormComponent, LowerCasePipe ],
   templateUrl: './order-section.component.html',
   styleUrl: './order-section.component.scss'
 })

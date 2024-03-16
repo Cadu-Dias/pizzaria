@@ -1,5 +1,4 @@
 import { Component, Input, InputSignal, Output, input } from '@angular/core';
-import { NgFor, NgIf } from '@angular/common';
 import { EventEmitter } from '@angular/core';
 import { Product } from '../../../core/models/interfaces/interfaces';
 import { FormsModule } from '@angular/forms';
@@ -8,7 +7,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-user-cart',
   standalone: true,
   imports: [
-    NgFor, NgIf, FormsModule
+    FormsModule
   ],
   templateUrl: './user-cart.component.html',
   styleUrl: './user-cart.component.scss'

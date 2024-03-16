@@ -1,13 +1,10 @@
 import { Component, EventEmitter, Input, InputSignal, Output, input } from '@angular/core';
 import { Order } from '../../../core/models/interfaces/interfaces';
-import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-user-orders',
   standalone: true,
-  imports: [
-    NgIf, NgFor
-  ],
+  imports: [],
   templateUrl: './user-orders.component.html',
   styleUrl: './user-orders.component.scss'
 })

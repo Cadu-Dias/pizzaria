@@ -4,10 +4,10 @@
         <h1 class="user__orders__no__account" >You haven't done a login or register in a valid account!</h1>
     }
     @if (userOrders().length <= 0 && isLogged()) {
-        <h1 class="user__orders__no__products__text" *ngIf="userOrders.length <= 0 && isLogged">You haven't ordered anything in this account!</h1>
+        <h1 class="user__orders__no__products__text">You haven't ordered anything in this account!</h1>
     }
     @if (userOrders().length > 0 && isLogged()) {
-        <section class="user__orders__container" *ngIf="userOrders.length > 0 && isLogged">
+        <section class="user__orders__container">
             <h1 class="user__orders__container__title">My Orders</h1>
             @for (order of userOrders(); track $index) {
                 <article class="user__orders__container__order">

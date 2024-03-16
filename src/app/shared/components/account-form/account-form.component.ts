@@ -2,13 +2,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { v4 as uuid } from 'uuid';
 import { Admin, User } from '../../../core/models/interfaces/interfaces';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault, UpperCasePipe } from '@angular/common';
+import { UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-account-form',
   standalone: true,
   imports: [
-    ReactiveFormsModule, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault, UpperCasePipe
+    ReactiveFormsModule, UpperCasePipe
   ],
   templateUrl: './account-form.component.html',
   styleUrl: './account-form.component.scss'

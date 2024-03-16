@@ -3,7 +3,7 @@
     <h1 class="user__account__page__title">{{isLogged()? 'Now you can make a order!': 'Register or Login a account to make a order!'}}</h1>
     <h3 class="user__account__page__islog">{{isLogged()? "Welcome: " + username: 'You are not logged in now!'}}</h3>
     @if(isLogged()) {
-        <button class="user__account__page__logout" *ngIf="isLogged" (click)="logout()">Logout</button>
+        <button class="user__account__page__logout" (click)="logout()">Logout</button>
     }
     <section class="user__account__page__forms">
         <app-account-form

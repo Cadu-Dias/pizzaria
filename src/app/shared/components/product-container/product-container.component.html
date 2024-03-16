@@ -9,21 +9,26 @@
     <h4 class="products__added__container__specific__name">{{product.name}}</h4>
     <div class="products__added__container__specific__ingredients">
         <h5>Ingredients:</h5>
-        <h5 
-            *ngFor="let ingredient of product.ingredients" 
-            class="products__added__container__specific__ingredients__item">
-            {{ingredient}}
-        </h5>
+        @for (ingredient of product.ingredients; track $index) {
+            <h5 
+                class="products__added__container__specific__ingredients__item">
+                {{ingredient}}
+            </h5>
+        }
     </div>
 
-    <div class="products__added__container__specific__button" *ngIf="accountType.includes('admin')">
-        <button class="products__added__container__specific__button__update" (click)="showUpdateProductScreen()">Update</button>
-        <button class="products__added__container__specific__button__delete" (click)="deleteProduct()">Delete</button>
-    </div>
+    @if (this.accountType.includes('admin')) {
+        <div class="products__added__container__specific__button">
+            <button class="products__added__container__specific__button__update" (click)="showUpdateProductScreen()">Update</button>
+            <button class="products__added__container__specific__button__delete" (click)="deleteProduct()">Delete</button>
+        </div>
+    } @else {
+        <div class="products__added__container__specific__user">
+            <input type="number" [(ngModel)]="qty" min="1" max="100" class="products__added__container__specific__user__qty">
+                <button class="products__added__container__specific__user__add__cart" 
+                (click)="addToCart()">Add to Cart</button>
+        </div>
+    }
+    
 
-    <div class="products__added__container__specific__user" *ngIf="accountType.includes('user')">
-        <input type="number" [(ngModel)]="qty" min="1" max="100" class="products__added__container__specific__user__qty">
-            <button class="products__added__container__specific__user__add__cart" 
-            (click)="addToCart()">Add to Cart</button>
-    </div>
 </div>
