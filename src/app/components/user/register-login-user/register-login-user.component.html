@@ -1,0 +1,22 @@
+<main class="user__account__page">
+    <h3 class="user__account__page__close" (click)="closePage()">X</h3>
+    <h1 class="user__account__page__title">{{isLogged? 'Now you can make a order!': 'Register or Login a account to make a order!'}}</h1>
+    <h3 class="user__account__page__islog">{{isLogged? "Welcome: " + username: 'You are not logged in now!'}}</h3>
+    <button class="user__account__page__logout" *ngIf="isLogged" (click)="logout()">Logout</button>
+    <section class="user__account__page__forms">
+        <app-account-form
+            formTitle="Login Now"
+            formType="login"
+            accountType="user"
+            buttonText="Login"
+            (userFormEvent)="loginUser($event)"
+        ></app-account-form>
+        <app-account-form
+            formTitle="Register Now"
+            formType="register"
+            accountType="user"
+            buttonText="Register"
+            (userFormEvent)="registerUser($event)"
+        ></app-account-form>
+    </section>
+</main>
