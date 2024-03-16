@@ -1,0 +1,12 @@
+<section class="content__products">
+    <h1 class="content__products__title">
+        OUR MENU
+    </h1>
+    <article class="content__products__container">
+        <app-product-container *ngFor="let product of productsArray()"
+           (addToCartEvent)="addToCart($event)"
+            accountType="user"
+            [product]="product"
+        ></app-product-container>
+    </article>
+</section>
