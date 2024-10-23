@@ -7,7 +7,12 @@ export const ADMIN_ROUTES : Routes = [
         loadComponent: () => import("./login-page-admin/login-page-admin.component").then(c => c.LoginPageAdminComponent)
     },
     {
-        path: 'main/page',
+      path: '',
+      redirectTo: 'login',
+      pathMatch: 'full'
+    },
+    {
+        path: 'main',
         loadComponent: () => import("./main-page-admin/main-page-admin.component").then(c => c.MainPageAdminComponent),
         canActivateChild: [authAdminGuard],
         children: [

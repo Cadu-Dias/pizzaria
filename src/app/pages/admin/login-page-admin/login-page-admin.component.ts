@@ -27,7 +27,7 @@ export class LoginPageAdminComponent {
         if(value.length === 0) {
           return;
         } 
-        this.router.navigate(["/admin/home"])
+        this.router.navigate(["/admin/page/main"])
         this.document.defaultView?.sessionStorage.setItem("token", uuid())
         this.document.defaultView?.sessionStorage.setItem("id", value[0].id)
         this.document.defaultView?.sessionStorage.setItem("adminName", value[0].username)

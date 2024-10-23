@@ -1,17 +1,16 @@
-import { DOCUMENT } from '@angular/common';
 import { inject } from '@angular/core';
 import { CanActivateChildFn, Router } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
 
 export const authAdminGuard: CanActivateChildFn = (route, state) => {
 
-  const sessionStorage = inject(DOCUMENT).defaultView?.sessionStorage as Storage
-  const token = sessionStorage.getItem("token")
+  const token = inject(AuthService).Token
   const router = inject(Router)
 
   if(token) {
     return true;
   }
 
-  router.navigate(["/admin/login"])
+  router.navigate(["/admin/page/login"])
   return false;
 };

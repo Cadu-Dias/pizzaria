@@ -9,7 +9,7 @@ import { Router, RouterOutlet } from '@angular/router';
   styleUrl: './main-page-admin.component.scss'
 })
 export class MainPageAdminComponent {
-  @ViewChild('profileBox', { read: ElementRef, static:false })
+  @ViewChild('profileBox', { read: ElementRef, static: false})
   profileBox!: ElementRef;
 
   profileName : string = sessionStorage.getItem("adminName") as string;
@@ -31,11 +31,15 @@ export class MainPageAdminComponent {
   }
 
   goUpdateProfilePage() {
-    this.router.navigate(["admin/home/admins/update/", sessionStorage.getItem("id")])
+    this.router.navigate(["admin/page/main/admins/update/", sessionStorage.getItem("id")])
   }
 
   logout() {
     sessionStorage.clear()
-    this.router.navigate(["admin/login"])
+    this.router.navigate(["admin/page/login"])
+  }
+
+  redirectTo(route: string) {
+    this.router.navigate([route])
   }
 }
